@@ -1,0 +1,103 @@
+                               //JSON COMPARISON//
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json comparison</title>
+</head>
+<body>
+    <script>
+       var jsonobj1 = `{"name":"person1", "age":5}`;
+       var jsonobj2 = `{"age":5, "name":"person1"}`;
+
+       function objcompare(){
+       var obj1 = JSON.parse(jsonobj1);
+       var obj2 = JSON.parse(jsonobj2);
+        if(Object.keys(obj1).length !== Object.keys(obj2).length){
+        return false
+        }
+       for(var key in obj1){
+        if(!obj2.hasOwnProperty(key) || obj1[key] !== obj2[key]){
+         return false;
+         }
+       }
+        return true;
+       };
+       var result = objcompare();
+       console.log(result);
+    </script>
+</body>
+</html>                        
+
+
+
+
+
+                               //RESTCOUNTRIES API USING TO PRINT THE COUNTRIES FLAG//
+
+                                 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest</title>
+</head>
+<body>
+    <script>
+       var xhr = new XMLHttpRequest();
+       var method = "GET";
+       var url = "https://restcountries.com/v3.1/all";
+       xhr.open(method, url);
+       xhr.onload = function(){
+        if(xhr.status === 200){
+         var countryDetails = JSON.parse(xhr.responseText);
+          for(var i = 0; i < countryDetails.length; i++){
+           console.log("country Flag is:", iscountryDetails[i].flag);
+          }
+        } else {
+           console.log("Request failed", xhr.status);
+           }
+      };
+     xhr.send();
+    </script>
+</body>
+</html>
+
+
+                         //REST COUNTRIES API USING TO PRINT THE COUNTRY NAME, REGION AND SUBREGION//
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest</title>
+</head>
+<body>
+    <script>
+       var xhr = new XMLHttpRequest();
+       var method = "GET";
+       var url = "https://restcountries.com/v3.1/all";
+       xhr.open(method, url);
+       xhr.onload = function(){
+        if(xhr.status === 200){
+         var countryDetails = JSON.parse(xhr.responseText);
+          for(var i = 0; i < countryDetails.length; i++){
+           console.log("country Name is:", countryDetails[i].name.common);
+           console.log("country Region is:", countryDetails[i].region);
+           console.log("country Sub-Region is:", countryDetails[i].subregion);
+           console.log("country Population is:", countryDetails[i].population);
+          }
+        } else {
+           console.log("Request failed", xhr.status);
+           }
+      };
+     xhr.send();
+    </script>
+</body>
+</html>
